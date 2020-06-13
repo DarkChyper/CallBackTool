@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">PRENOM</th>
+                <th scope="col">NOM</th>
+                <th scope="col">PAYS</th>
+                <th scope="col">NUMERO NATIONAL</th>
+                <th scope="col">NUMERO INTERNATIONAL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>FRANCE</td>
+                <td>06 76 93 82 60</td>
+                <td>+33 6 76 93 82 60</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>NOUVELLE ZELANDE</td>
+                <td>06 76 93 82 60</td>
+                <td>+33 6 76 93 82 60</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>UNITED STATE OF AMERICA</td>
+                <td>06 76 93 82 60</td>
+                <td>+33 6 76 93 82 60</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

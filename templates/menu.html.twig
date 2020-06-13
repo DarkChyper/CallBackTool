@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light nav-pills nav-fill">
+    <a class="navbar-brand" href="{{ path("homepage") }}">
+        <img src="{{  asset('assets/img/logo-stores-discount.svg') }}"  height="30" alt="store discount logo" loading="lazy">
+    </a>
+    <div class="nav nav-pills nav-fill" id="nav-links">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {%  if current_page == 'home' %} active {% endif %}">
+                <a class="nav-link" href="{{ path("homepage") }}">Home</a>
+            </li>
+            <li class="nav-item {%  if current_page == 'list' %} active {% endif %}">
+                <a class="nav-link" href="{{ path("list") }}">List</a>
+            </li>
+        </ul>
+    </div>
+</nav>

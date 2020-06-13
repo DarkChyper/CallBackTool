@@ -1,0 +1,41 @@
+/* #e85711 orange foncé */
+
+#main {
+    background-color: #F8F9FA;
+    height: 100vh;
+    padding: 5px 5px 5px 15px;
+    -webkit-box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
+    box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
+}
+
+/* card contenant le formulaire de demande de rappel */
+#formcard {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #f16f17;
+    color: #ffffff;
+    opacity: 1;
+    border: 0;
+}
+
+/* page registred */
+.centered {
+    text-align: center;
+}
+.page-centered {
+    margin-top: 20vh;
+    display: inline-block;
+}
+
+/* page list */
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(232,87,17,.15);
+}
+
+.table thead th{
+    border-bottom: 2px solid #e85711 !important;
+}
