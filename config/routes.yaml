@@ -4,7 +4,7 @@ homepage:
 
 registred:
   path: /registred
-  controller: App\Controller\CallBackController::registred
+  controller: App\Controller\CallBackController::register
 
 list:
   path: /list

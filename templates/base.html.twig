@@ -2,10 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Call Back Tool{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% include 'menu.html.twig' %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
