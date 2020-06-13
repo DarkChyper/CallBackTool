@@ -1,3 +1,5 @@
+/* #e85711 orange foncé */
+
 #main {
     background-color: #F8F9FA;
     height: 100vh;
@@ -27,4 +29,13 @@
 .page-centered {
     margin-top: 20vh;
     display: inline-block;
+}
+
+/* page list */
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(232,87,17,.15);
+}
+
+.table thead th{
+    border-bottom: 2px solid #e85711 !important;
 }
