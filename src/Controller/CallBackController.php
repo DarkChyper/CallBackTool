@@ -24,7 +24,9 @@ class CallBackController extends AbstractController
      */
     public function register()
     {
-        return $this->render('call_back/register.html.twig');
+        return $this->render('call_back/register.html.twig', [
+            'current_page' => 'register'
+        ]);
     }
 
     /**
