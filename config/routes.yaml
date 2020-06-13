@@ -2,8 +2,8 @@ homepage:
   path: /
   controller: App\Controller\CallBackController::index
 
-registred:
-  path: /registred
+register:
+  path: /register
   controller: App\Controller\CallBackController::register
 
 list:
