@@ -1,3 +1,12 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+homepage:
+  path: /
+  controller: App\Controller\CallBackController::index
+
+registred:
+  path: /registred
+  controller: App\Controller\CallBackController::registred
+
+list:
+  path: /list
+  controller: App\Controller\CallBackController::listing
+
