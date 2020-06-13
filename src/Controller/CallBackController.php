@@ -14,7 +14,7 @@ class CallBackController extends AbstractController
      */
     public function index()
     {
-        return $this->render('call_back/home.html.twig');
+        return $this->render('call_back/home.html.twig', ['current_page' => 'home' ]);
     }
 
     /**
@@ -34,6 +34,6 @@ class CallBackController extends AbstractController
      */
     public function listing()
     {
-        return $this->render('call_back/list.html.twig');
+        return $this->render('call_back/list.html.twig', ['current_page' => 'list' ]);
     }
 }
