@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\Type\CallRequestType;
 use App\Service\SessionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CallBackController extends AbstractController
@@ -11,11 +14,31 @@ class CallBackController extends AbstractController
     /**
      * Controleur de la page d'accueil
      *
+     * @param Request $request
+     * @param SessionService $sessionService
      * @return Response
      */
-    public function index()
+    public function index(Request $request, SessionService $sessionService)
     {
-        return $this->render('call_back/home.html.twig', ['current_page' => 'home' ]);
+
+        $callRequest = $sessionService->getOrCreateCallRequestSession();
+        $CallRequestForm = $this->createForm(CallRequestType::class, $callRequest)->handleRequest($request);
+
+        if($CallRequestForm->isSubmitted() && $CallRequestForm->isValid()){
+            // validation of the phone number
+
+            // save in session
+            $sessionService->saveCallRequestSession($callRequest);
+
+            // go to register view
+            return new RedirectResponse($this->generateUrl('register'));
+        }
+
+        return $this->render('call_back/home.html.twig', [
+            'current_page' => 'home',
+            'callRequestForm' => $CallRequestForm->createView()
+
+        ]);
     }
 
     /**

@@ -1,7 +1,13 @@
-<form>
+{{ form_start(callRequestForm) }}
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="cbfFName">Pr&eacute;nom</label>
+            {{ form_row(callRequestForm.fname, {
+                'attr': {
+                    'id': 'cbfFName'
+                }
+                })
+            }}
             <input type="text" class="form-control" id="cbfFName">
         </div>
         <div class="form-group col-md-6">
@@ -26,4 +32,4 @@
         </div>
     </div>
 
-</form>
+{{ form_end(callRequestForm) }}
