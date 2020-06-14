@@ -1,35 +1,46 @@
-<form>
+{{ form_start(callRequestForm) }}
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="cbfFName">Pr&eacute;nom</label>
-            <input type="text" class="form-control" id="cbfFName">
+            <label for="call_request_fname">Pr&eacute;nom</label>
+            {{ form_row(callRequestForm.fname, {
+                'attr': {
+                    'class': 'form-control'
+                }
+                })
+            }}
         </div>
         <div class="form-group col-md-6">
-            <label for="cbfName">Nom</label>
-            <input type="text" class="form-control" id="cbfName">
+            <label for="call_request_name">Nom</label>
+            {{ form_row(callRequestForm.name, {
+                'attr': {
+                    'class': 'form-control'
+                }
+            })
+            }}
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="cbfCountry">Pays</label>
-            <select id="cbfCountry" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select>
+            <label for="call_request_country">Pays</label>
+            {{ form_row(callRequestForm.country, {
+                'attr': {
+                    'class': 'form-control'
+                }
+            })
+            }}
         </div>
         <div class="form-group col-md-12">
-            <label for="cbfPhone">Num&eacute;ro de t&eacute;l&eacute;phone</label>
-
+            <label for="phoneNumber">Num&eacute;ro de t&eacute;l&eacute;phone</label>
+            {{ form_row(callRequestForm.phoneNumber, {
+                'attr': {
+                    'class': 'form-control'
+                }
+            })
+            }}
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="cbfInd" disabled>
-            </div>
-            <div class="form-group col-md-10">
-                <input type="text" class="form-control" id="cbfPhone">
-
-            </div>
+        <div class="form-group col-md-12">
+        <button type="submit" class="btn btn-primary">Appellez moi</button>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Appellez moi</button>
-</form>
+
+{{ form_end(callRequestForm) }}

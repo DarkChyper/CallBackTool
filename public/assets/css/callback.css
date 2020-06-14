@@ -15,13 +15,6 @@
     padding-bottom: 2rem;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #f16f17;
-    color: #ffffff;
-    opacity: 1;
-    border: 0;
-}
-
 /* page registred */
 .centered {
     text-align: center;
@@ -38,4 +31,24 @@
 
 .table thead th{
     border-bottom: 2px solid #e85711 !important;
+}
+
+/* pagination */
+.page-link {
+    color: rgba(232,87,17,1);
+}
+
+.page-link:hover {
+    color: rgba(232,87,17,1);
+    background-color: rgba(232,87,17,.15);
+}
+.page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(232,87,17,.15);
+}
+
+.page-item.active .page-link {
+    background-color: rgba(232,87,17,1);
+    border-color: rgba(232,87,17,1);
 }
