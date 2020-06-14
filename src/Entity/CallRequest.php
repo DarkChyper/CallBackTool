@@ -35,7 +35,7 @@ class CallRequest
      *     minMessage = "Votre nom doit faire au moins { min } caractères",
      *     maxMessage = "Votre nom ne peut exéder { max } caractères.")
      * @Assert\Regex(
-     *     pattern    = "/^[azAZ ]{4,20}$/",
+     *     pattern    = "/^[a-zA-Z ]{2,255}$/",
      *     message    = "Votre nom ne peut contenir que des lettres et des espaces."
      * )
      */
@@ -52,8 +52,8 @@ class CallRequest
      *     minMessage = "Votre prénom doit faire au moins { min } caractères",
      *     maxMessage = "Votre prénom ne peut exéder { max } caractères.")
      * @Assert\Regex(
-     *     pattern    = "/^[azAZ -]{4,20}$/",
-     *     message    = "Votre nom ne peut contenir que des lettres, des '-' et des espaces."
+     *     pattern    = "/^[a-zA-Z \-]{2,255}$/",
+     *     message    = "Votre prenom ne peut contenir que des lettres, des '-' et des espaces."
      * )
      */
     protected $fname;
@@ -68,14 +68,12 @@ class CallRequest
     /**
      * @var string national format of phone number
      * @ORM\Column(name="national", type="string", length=30)
-     * @Assert\NotBlank
      */
     protected $national;
 
     /**
      * @var string international format of phone number
      * @ORM\Column(name="international", type="string", length=35)
-     * @Assert\NotBlank
      */
     protected $international;
 
@@ -86,6 +84,14 @@ class CallRequest
      * @Assert\NotBlank
      */
     protected $phoneNumber;
+
+    /**
+     * CallRequest constructor.
+     */
+    public function __construct()
+    {
+    }
+
 
     /**
      * @return int
@@ -106,7 +112,7 @@ class CallRequest
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -122,7 +128,7 @@ class CallRequest
     /**
      * @return string
      */
-    public function getFname(): string
+    public function getFname(): ?string
     {
         return $this->fname;
     }
@@ -138,7 +144,7 @@ class CallRequest
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -154,7 +160,7 @@ class CallRequest
     /**
      * @return string
      */
-    public function getNational(): string
+    public function getNational(): ?string
     {
         return $this->national;
     }
@@ -170,7 +176,7 @@ class CallRequest
     /**
      * @return string
      */
-    public function getInternational(): string
+    public function getInternational(): ?string
     {
         return $this->international;
     }
@@ -186,7 +192,7 @@ class CallRequest
     /**
      * @return string
      */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }

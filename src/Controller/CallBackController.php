@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\Type\CallRequestType;
 use App\Service\SessionService;
+use App\Service\ValidationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,9 +17,10 @@ class CallBackController extends AbstractController
      *
      * @param Request $request
      * @param SessionService $sessionService
+     * @param ValidationService $validationService
      * @return Response
      */
-    public function index(Request $request, SessionService $sessionService)
+    public function index(Request $request, SessionService $sessionService, ValidationService $validationService)
     {
 
         $callRequest = $sessionService->getOrCreateCallRequestSession();
@@ -26,6 +28,10 @@ class CallBackController extends AbstractController
 
         if($CallRequestForm->isSubmitted() && $CallRequestForm->isValid()){
             // validation of the phone number
+            $callRequest = $validationService->validateCallRequest($callRequest);
+
+            // save in database
+
 
             // save in session
             $sessionService->saveCallRequestSession($callRequest);

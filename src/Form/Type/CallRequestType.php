@@ -16,21 +16,22 @@ class CallRequestType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label' => ' ',
+                'label' => false,
                 'required' => true,
 
             ))
             ->add('fname', TextType::class, array(
                 'required' => true,
-                'label' => ' ',
+                'label' => false,
+
             ))
             ->add('country', CountryType::class, array(
                 'required' => true,
-                'label' => ' ',
+                'label' => false,
                 'preferred_choices' => array('FR')
             ))
             ->add('phoneNumber', TextType::class, array(
-                'label' => ' ',
+                'label' => false,
                 'required' => true,
 
             ));
@@ -39,7 +40,7 @@ class CallRequestType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Order',
+            'data_class' => 'App\Entity\CallRequest',
         ));
     }
 }
