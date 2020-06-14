@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\SessionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,10 +23,16 @@ class CallBackController extends AbstractController
      *
      * @return Response
      */
-    public function register()
+    public function register(SessionService $sessionService)
     {
+        $callRequest = $sessionService->getCallRequestSession();
+
+        // pour éviter le rechargement de la page
+        $sessionService->deleteCallRequestInSession();
+
         return $this->render('call_back/register.html.twig', [
-            'current_page' => 'register'
+            'current_page' => 'register',
+            'callrequest' => $callRequest
         ]);
     }
 

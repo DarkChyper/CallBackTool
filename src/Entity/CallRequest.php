@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class CallRequest
  *
  * @ORM\Table
- * @ORM\entity(repositoryClass="App\Repository\CallRequestRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CallRequestRepository")
  *
  * @package App\Entity
  */
@@ -68,18 +68,22 @@ class CallRequest
     /**
      * @var string national format of phone number
      * @ORM\Column(name="national", type="string", length=30)
+     * @Assert\NotBlank
      */
     protected $national;
 
     /**
      * @var string international format of phone number
      * @ORM\Column(name="international", type="string", length=35)
+     * @Assert\NotBlank
      */
     protected $international;
 
     /**
      * @var string phone number given by user
      * not stored like this on database
+     *
+     * @Assert\NotBlank
      */
     protected $phoneNumber;
 
