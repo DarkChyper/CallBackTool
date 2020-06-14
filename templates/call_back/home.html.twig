@@ -13,3 +13,8 @@
     </div>
 </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{  parent() }}
+    <script src="{{ asset("assets/js/validatePhoneNumber.js") }}"></script>
+{% endblock %}

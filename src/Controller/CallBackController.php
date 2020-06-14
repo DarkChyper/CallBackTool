@@ -6,6 +6,7 @@ use App\Form\Type\CallRequestType;
 use App\Service\SessionService;
 use App\Service\CallRequestService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,10 +77,24 @@ class CallBackController extends AbstractController
      */
     public function listing(Request $request, CallRequestService $callRequestService)
     {
-        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page',1), 3);
+        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page',1), 10);
+
+
         return $this->render('call_back/list.html.twig', [
             'current_page' => 'list',
             'callrequests' => $requests
         ]);
+    }
+
+    /**
+     * Controleur pour faire la verification "front" du numero de telephone
+     *
+     * @param Request $request
+     * @param CallRequestService $callRequestService
+     * @return JsonResponse
+     */
+    public function verify(Request $request, CallRequestService $callRequestService){
+        $results = Array();
+        return new JsonResponse($results);
     }
 }

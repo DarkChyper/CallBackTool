@@ -54,17 +54,23 @@
             }}
         </div>
         <div class="form-group col-md-12">
-            <label for="phoneNumber">Num&eacute;ro de t&eacute;l&eacute;phone</label>
+            <label for="call_request_phoneNumber">Num&eacute;ro de t&eacute;l&eacute;phone</label>
             {{ form_widget(callRequestForm.phoneNumber, {
                 'attr': {
-                    'class': 'form-control'
+                    'class': 'form-control',
+
                 }
             })
             }}
         </div>
         <div class="form-group col-md-12">
-        <button type="submit" class="btn btn-primary">Appellez moi</button>
+        <button type="submit" class="btn btn-primary" id="submit">
+            <span class="spinner-border spinner-border-sm hidden" role="status" aria-hidden="true" id="spinner"></span>
+            <span>Appellez moi</span>
+        </button>
+            <span id="msg-error" class="msg-error hidden">Le num&eacute;ro de t&eacute;l&eacute;phone est invalide !</span>
         </div>
     </div>
+    <div id="cache" class="hidden"></div>
 
 {{ form_end(callRequestForm) }}

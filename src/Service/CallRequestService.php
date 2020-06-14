@@ -30,6 +30,9 @@ class CallRequestService
      */
     protected $paginator;
 
+    private $_apiUser;
+    private $_apîPassword;
+
     const OUTPUT = "output";
     const IS_VALID = "isValid";
     const NATIONAL = "national";
@@ -37,11 +40,15 @@ class CallRequestService
 
     /**
      * ValidationService constructor.
+     * @param String $apiUser
+     * @param String $apiPassword
      * @param EntityManagerInterface $entityManager
      * @param PaginatorInterface $paginator
      */
-    public function __construct(EntityManagerInterface $entityManager, PaginatorInterface $paginator)
+    public function __construct(String $apiUser, String $apiPassword, EntityManagerInterface $entityManager, PaginatorInterface $paginator)
     {
+        $this->_apiUser = $apiUser;
+        $this->_apîPassword = $apiPassword;
         $this->em = $entityManager;
         $this->paginator = $paginator;
     }
@@ -95,7 +102,7 @@ class CallRequestService
 
         $store = new Store('/cache/PhoneAPI/');
         $client = HttpClient::createForBaseUri('http://163.172.67.144:8042/',[
-            'auth_basic' => 'api:azpihviyazfb'
+            'auth_basic' => $this->_apiUser.":".$this->_apîPassword
         ]);
         $client = new CachingHttpClient($client, $store);
 

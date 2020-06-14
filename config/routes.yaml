@@ -10,3 +10,10 @@ list:
   path: /list
   controller: App\Controller\CallBackController::listing
 
+fos_js_routing:
+  resource: "@FOSJsRoutingBundle/Resources/config/routing/routing-sf4.xml"
+
+verif:
+  path: /verif
+  controller: App\Controller\CallBackController::verify
+
