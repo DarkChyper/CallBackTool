@@ -38,7 +38,7 @@ class CallBackController extends AbstractController
             $sessionService->saveCallRequestSession($callRequest);
 
             // go to register view
-            //return new RedirectResponse($this->generateUrl('register'));
+            return new RedirectResponse($this->generateUrl('register'));
         }
 
         return $this->render('call_back/home.html.twig', [
