@@ -16,31 +16,18 @@
             </tr>
             </thead>
             <tbody>
+            {%  for request in callrequests %}
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>FRANCE</td>
-                <td>06 76 93 82 60</td>
-                <td>+33 6 76 93 82 60</td>
+                <th scope="row">{{ request.id }}</th>
+                <td>{{ request.fname }}</td>
+                <td>{{ request.name }}</td>
+                <td>{{ request.country }}</td>
+                <td>{{ request.national }}</td>
+                <td>{{ request.international }}</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>NOUVELLE ZELANDE</td>
-                <td>06 76 93 82 60</td>
-                <td>+33 6 76 93 82 60</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>UNITED STATE OF AMERICA</td>
-                <td>06 76 93 82 60</td>
-                <td>+33 6 76 93 82 60</td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
+        {{ knp_pagination_render(callrequests) }}
     </div>
 {% endblock %}

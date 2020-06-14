@@ -51,6 +51,7 @@ class CallBackController extends AbstractController
     /**
      * Controleur de la page de succes
      *
+     * @param SessionService $sessionService
      * @return Response
      */
     public function register(SessionService $sessionService)
@@ -69,10 +70,16 @@ class CallBackController extends AbstractController
     /**
      * Controleur de la page de listing
      *
+     * @param Request $request
+     * @param CallRequestService $callRequestService
      * @return Response
      */
-    public function listing()
+    public function listing(Request $request, CallRequestService $callRequestService)
     {
-        return $this->render('call_back/list.html.twig', ['current_page' => 'list' ]);
+        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page',1), 3);
+        return $this->render('call_back/list.html.twig', [
+            'current_page' => 'list',
+            'callrequests' => $requests
+        ]);
     }
 }

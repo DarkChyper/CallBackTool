@@ -32,8 +32,8 @@ class CallRequest
      * @Assert\Length(
      *     min        = 2,
      *     max        = 255,
-     *     minMessage = "Votre nom doit faire au moins { min } caractères",
-     *     maxMessage = "Votre nom ne peut exéder { max } caractères.")
+     *     minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *     maxMessage = "Votre nom ne peut exéder {{ limit }} caractères.")
      * @Assert\Regex(
      *     pattern    = "/^[a-zA-Z ]{2,255}$/",
      *     message    = "Votre nom ne peut contenir que des lettres et des espaces."
@@ -49,8 +49,8 @@ class CallRequest
      * @Assert\Length(
      *     min        = 2,
      *     max        = 255,
-     *     minMessage = "Votre prénom doit faire au moins { min } caractères",
-     *     maxMessage = "Votre prénom ne peut exéder { max } caractères.")
+     *     minMessage = "Votre prénom doit faire au moins {{ limit }} caractères",
+     *     maxMessage = "Votre prénom ne peut exéder {{ limit }} caractères.")
      * @Assert\Regex(
      *     pattern    = "/^[a-zA-Z \-]{2,255}$/",
      *     message    = "Votre prenom ne peut contenir que des lettres, des '-' et des espaces."
@@ -82,6 +82,10 @@ class CallRequest
      * not stored like this on database
      *
      * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern    = "/^\+{0,1}[0-9 ]{2,35}$/",
+     *     message    = "Le numéro ne peut contenir que des chiffres, des espaces et un '+'"
+     * )
      */
     protected $phoneNumber;
 
