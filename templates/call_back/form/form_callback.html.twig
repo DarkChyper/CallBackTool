@@ -1,8 +1,32 @@
 {{ form_start(callRequestForm) }}
+
+    {% if form_errors(callRequestForm.fname) != null  %}
+        <div class="alert alert-danger">
+            {{ form_errors(callRequestForm.fname) }}
+        </div>
+    {% endif %}
+    {% if form_errors(callRequestForm.name) != null  %}
+        <div class="alert alert-danger">
+            {{ form_errors(callRequestForm.name) }}
+        </div>
+    {% endif %}
+    {% if form_errors(callRequestForm.country) != null  %}
+        <div class="alert alert-danger">
+            {{ form_errors(callRequestForm.country) }}
+        </div>
+    {% endif %}
+    {% if form_errors(callRequestForm.phoneNumber) != null  %}
+        <div class="alert alert-danger">
+            {{ form_errors(callRequestForm.phoneNumber) }}
+        </div>
+    {% endif %}
+
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="call_request_fname">Pr&eacute;nom</label>
-            {{ form_row(callRequestForm.fname, {
+
+            {{ form_widget(callRequestForm.fname, {
                 'attr': {
                     'class': 'form-control'
                 }
@@ -11,7 +35,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="call_request_name">Nom</label>
-            {{ form_row(callRequestForm.name, {
+            {{ form_widget(callRequestForm.name, {
                 'attr': {
                     'class': 'form-control'
                 }
@@ -22,7 +46,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="call_request_country">Pays</label>
-            {{ form_row(callRequestForm.country, {
+            {{ form_widget(callRequestForm.country, {
                 'attr': {
                     'class': 'form-control'
                 }
@@ -30,17 +54,23 @@
             }}
         </div>
         <div class="form-group col-md-12">
-            <label for="phoneNumber">Num&eacute;ro de t&eacute;l&eacute;phone</label>
-            {{ form_row(callRequestForm.phoneNumber, {
+            <label for="call_request_phoneNumber">Num&eacute;ro de t&eacute;l&eacute;phone</label>
+            {{ form_widget(callRequestForm.phoneNumber, {
                 'attr': {
-                    'class': 'form-control'
+                    'class': 'form-control',
+
                 }
             })
             }}
         </div>
         <div class="form-group col-md-12">
-        <button type="submit" class="btn btn-primary">Appellez moi</button>
+        <button type="submit" class="btn btn-primary" id="submit">
+            <span class="spinner-border spinner-border-sm hidden" role="status" aria-hidden="true" id="spinner"></span>
+            <span>Appellez moi</span>
+        </button>
+            <span id="msg-error" class="msg-error hidden">Le num&eacute;ro de t&eacute;l&eacute;phone est invalide !</span>
         </div>
     </div>
+    <div id="cache" class="hidden"></div>
 
 {{ form_end(callRequestForm) }}

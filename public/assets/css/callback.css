@@ -15,6 +15,15 @@
     padding-bottom: 2rem;
 }
 
+.hidden {
+    display: none !important;
+}
+
+.msg-error {
+    color: #AA3333;
+}
+
+
 /* page registred */
 .centered {
     text-align: center;

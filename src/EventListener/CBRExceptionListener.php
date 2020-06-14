@@ -4,7 +4,9 @@
 namespace App\EventListener;
 
 
+use App\Exception\CallAPIException;
 use App\Exception\CallRequestSessionException;
+use App\Service\MessageFlashService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
@@ -13,14 +15,17 @@ use Symfony\Component\Routing\RouterInterface;
 class CBRExceptionListener
 {
     private $_router;
+    private $_mfs;
 
     /**
      * CBRExceptionListener constructor.
      * @param RouterInterface $router
+     * @param MessageFlashService $mfs
      */
-    public function __construct(RouterInterface $router)
+    public function __construct(RouterInterface $router, MessageFlashService $mfs)
     {
         $this->_router = $router;
+        $this->_mfs = $mfs;
     }
 
     public function onKernelException(ExceptionEvent $event){
@@ -29,7 +34,9 @@ class CBRExceptionListener
 
         if ($exception instanceof CallRequestSessionException) {
             $event->setResponse($this->catchException('homepage'));
-        }else {
+        }elseif ($exception instanceof CallAPIException) {
+            $event->setResponse($this->catchException('homepage',$exception->getPrevious() . " ||| " . $exception->getMessage()));
+        } else {
             return false;
         }
     }
@@ -40,9 +47,9 @@ class CBRExceptionListener
      * @return RedirectResponse
      */
     private function catchException($route, $message=null){
-        /*if($message !== null){
-            $this->mfs->messageError($message);
-        }*/
+        if($message !== null){
+            $this->_mfs->messageError($message);
+        }
         return new RedirectResponse($this->_router->generate($route));
     }
 }
