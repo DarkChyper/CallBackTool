@@ -8,9 +8,10 @@ use App\Entity\CallRequest;
 use App\Exception\CallAPIException;
 use App\Exception\NonLockAPIException;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Exception\RuntimeException;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpKernel\HttpCache\Store;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -91,9 +92,12 @@ class CallRequestService
      * @return array|mixed
      */
     private function getPhoneInfoByAPI(String $country, String $phoneNumber){
+
+        $store = new Store('/cache/PhoneAPI/');
         $client = HttpClient::createForBaseUri('http://163.172.67.144:8042/',[
             'auth_basic' => 'api:azpihviyazfb'
         ]);
+        $client = new CachingHttpClient($client, $store);
 
         try {
             $response = $client->request('POST', 'http://163.172.67.144:8042/api/v1/validate', [
