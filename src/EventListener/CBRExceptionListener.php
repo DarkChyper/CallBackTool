@@ -35,7 +35,7 @@ class CBRExceptionListener
         if ($exception instanceof CallRequestSessionException) {
             $event->setResponse($this->catchException('homepage'));
         }elseif ($exception instanceof CallAPIException) {
-            $event->setResponse($this->catchException('homepage',$exception->getPrevious() . " ||| " . $exception->getMessage()));
+            $event->setResponse($this->catchException('homepage',$exception->getMessage()));
         } else {
             return false;
         }
