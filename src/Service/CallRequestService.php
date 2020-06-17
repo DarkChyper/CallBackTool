@@ -7,7 +7,7 @@ namespace App\Service;
 use App\Entity\CallRequest;
 use App\Exception\CallAPIException;
 use App\Exception\NonLockAPIException;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CallRequestRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
@@ -24,30 +24,33 @@ class CallRequestService
     const IS_VALID = "isValid";
     const NATIONAL = "national";
     const INTERNATIONAL = "international";
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    const URL_API_PHONE_BASE = 'http://163.172.67.144:8042/';
+    const URL_API_PHONE_VALIDATE = 'api/v1/validate';
+
     /**
      * @var PaginatorInterface
      */
     protected $paginator;
+
+    protected $callRequestRepository;
+
     private $_apiUser;
-    private $_apîPassword;
+    private $_apiPassword;
+
 
     /**
      * ValidationService constructor.
      * @param String $apiUser
      * @param String $apiPassword
-     * @param EntityManagerInterface $entityManager
+     * @param CallRequestRepository $callRequestRepository
      * @param PaginatorInterface $paginator
      */
-    public function __construct(string $apiUser, string $apiPassword, EntityManagerInterface $entityManager, PaginatorInterface $paginator)
+    public function __construct(string $apiUser, string $apiPassword, CallRequestRepository $callRequestRepository, PaginatorInterface $paginator)
     {
         $this->_apiUser = $apiUser;
-        $this->_apîPassword = $apiPassword;
-        $this->em = $entityManager;
+        $this->_apiPassword = $apiPassword;
         $this->paginator = $paginator;
+        $this->callRequestRepository = $callRequestRepository;
     }
 
     /**
@@ -77,13 +80,13 @@ class CallRequestService
     {
 
         $store = new Store('/cache/PhoneAPI/');
-        $client = HttpClient::createForBaseUri('http://163.172.67.144:8042/', [
-            'auth_basic' => $this->_apiUser . ":" . $this->_apîPassword
+        $client = HttpClient::createForBaseUri(self::URL_API_PHONE_BASE, [
+            'auth_basic' => $this->_apiUser . ":" . $this->_apiPassword
         ]);
         $client = new CachingHttpClient($client, $store);
 
         try {
-            $response = $client->request('POST', 'http://163.172.67.144:8042/api/v1/validate', [
+            $response = $client->request('POST', self::URL_API_PHONE_BASE . self::URL_API_PHONE_VALIDATE, [
                 'json' => [array('phoneNumber' => $phoneNumber, "countryCode" => $country)]
             ]);
 
@@ -137,8 +140,7 @@ class CallRequestService
      */
     public function save(CallRequest $callRequest)
     {
-        $this->em->persist($callRequest);
-        $this->em->flush();
+
     }
 
     /**
@@ -150,7 +152,7 @@ class CallRequestService
     {
 
         $pagination = $this->paginator->paginate(
-            $this->em->getRepository(CallRequest::class)->getAllCallRequest(),
+            $this->callRequestRepository->getAllCallRequest(),
             $page,
             $limit
         );
