@@ -9,6 +9,11 @@
     box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
 }
 
+/* Menu */
+.nav-fill .nav-item {
+    text-align: justify;
+}
+
 /* card contenant le formulaire de demande de rappel */
 #formcard {
     padding-top: 2rem;
