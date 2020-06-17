@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register | {{ parent() }}{% endblock %}
+{% block title %}{{ menu.register | trans }} | {{ parent() }}{% endblock %}
 
 {% block body %}
     <div class="centered">
         <div class="alert alert-success page-centered" role="alert">
-           Votre demande de rappel a bien &eacute;t&eacute; enregistr&eacute;
+            {% trans %}
+            msg.success
+            {% endtrans %}
         </div>
     </div>
-    {# >{{ callrequest.name }} | {{ callrequest.fname }} | {{ callrequest.country }} | {{ callrequest.national }} | {{ callrequest.international }}<#}
 {% endblock %}

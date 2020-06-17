@@ -2,11 +2,17 @@
 
 #main {
     background-color: #F8F9FA;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     padding: 5px 5px 5px 15px;
     -webkit-box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
     box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.57);
+}
+
+/* Menu */
+.nav-fill .nav-item {
+    text-align: justify;
 }
 
 /* card contenant le formulaire de demande de rappel */
@@ -34,15 +40,29 @@
 }
 
 /* page list */
-.table-striped tbody tr:nth-of-type(2n+1) {
+.tab-header {
+    border-bottom: 2px solid #e85711;
+}
+
+.tab-role-col, .tab-role-row {
+    font-weight: bold;
+}
+
+.tab-header, .tab-row-striped {
+    margin: auto;
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+.tab-row-striped:nth-of-type(2n+1) {
     background-color: rgba(232,87,17,.15);
 }
 
-.table thead th{
-    border-bottom: 2px solid #e85711 !important;
-}
-
 /* pagination */
+.pagination {
+    margin: 2rem auto;
+
+}
 .page-link {
     color: rgba(232,87,17,1);
 }
@@ -60,4 +80,12 @@
 .page-item.active .page-link {
     background-color: rgba(232,87,17,1);
     border-color: rgba(232,87,17,1);
+}
+
+@media (max-width: 768px) {
+    .tab-header, .tab-row-striped {
+        margin: auto;
+        padding: 0.5rem 0;
+        text-align: left;
+    }
 }

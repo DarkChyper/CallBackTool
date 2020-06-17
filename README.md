@@ -9,9 +9,14 @@ Un exercice avec Symfony et des appels à une API
     * Configurer le bundle FOSJsRoutingBundle
     * Appel à une route symfony via JS => terminer le script
     
+### v0.3.2
+  * Amélioration du traitement du tableau reçu par l'API Phone Validate
+  * Retrait de l'entity manager de la couche Service
+  * Amélioration de l'UI/UX en mode portables et tablettes
+  * internationalisation du site
+
 ### v0.3.1
   * Correctif du client HTTP à la réception d'un numéro invalide
-  
   
 ### v0.3.0
   * Validation du numéro via API

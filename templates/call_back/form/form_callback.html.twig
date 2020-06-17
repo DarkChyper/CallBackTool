@@ -24,7 +24,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="call_request_fname">Pr&eacute;nom</label>
+            <label for="call_request_fname">{{ 'form.cbr.fname' | trans }}</label>
 
             {{ form_widget(callRequestForm.fname, {
                 'attr': {
@@ -34,7 +34,7 @@
             }}
         </div>
         <div class="form-group col-md-6">
-            <label for="call_request_name">Nom</label>
+            <label for="call_request_name">{{ 'form.cbr.name' | trans }}</label>
             {{ form_widget(callRequestForm.name, {
                 'attr': {
                     'class': 'form-control'
@@ -45,7 +45,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="call_request_country">Pays</label>
+            <label for="call_request_country">{{ 'form.cbr.country' | trans }}</label>
             {{ form_widget(callRequestForm.country, {
                 'attr': {
                     'class': 'form-control'
@@ -54,7 +54,7 @@
             }}
         </div>
         <div class="form-group col-md-12">
-            <label for="call_request_phoneNumber">Num&eacute;ro de t&eacute;l&eacute;phone</label>
+            <label for="call_request_phoneNumber">{{ 'form.cbr.phone' | trans }}</label>
             {{ form_widget(callRequestForm.phoneNumber, {
                 'attr': {
                     'class': 'form-control',
@@ -66,7 +66,7 @@
         <div class="form-group col-md-12">
         <button type="submit" class="btn btn-primary" id="submit">
             <span class="spinner-border spinner-border-sm hidden" role="status" aria-hidden="true" id="spinner"></span>
-            <span>Appellez moi</span>
+            <span>{{ 'form.cbr.sendbtn' | trans }}</span>
         </button>
             <span id="msg-error" class="msg-error hidden">Le num&eacute;ro de t&eacute;l&eacute;phone est invalide !</span>
         </div>

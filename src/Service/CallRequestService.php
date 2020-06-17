@@ -7,7 +7,7 @@ namespace App\Service;
 use App\Entity\CallRequest;
 use App\Exception\CallAPIException;
 use App\Exception\NonLockAPIException;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CallRequestRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
@@ -24,30 +24,36 @@ class CallRequestService
     const IS_VALID = "isValid";
     const NATIONAL = "national";
     const INTERNATIONAL = "international";
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    const URL_API_PHONE_BASE = 'http://163.172.67.144:8042/';
+    const URL_API_PHONE_VALIDATE = 'api/v1/validate';
+
     /**
      * @var PaginatorInterface
      */
     protected $paginator;
+
+    /**
+     * @var CallRequestRepository
+     */
+    protected $callRequestRepository;
+
     private $_apiUser;
-    private $_apîPassword;
+    private $_apiPassword;
+
 
     /**
      * ValidationService constructor.
      * @param String $apiUser
      * @param String $apiPassword
-     * @param EntityManagerInterface $entityManager
+     * @param CallRequestRepository $callRequestRepository
      * @param PaginatorInterface $paginator
      */
-    public function __construct(string $apiUser, string $apiPassword, EntityManagerInterface $entityManager, PaginatorInterface $paginator)
+    public function __construct(string $apiUser, string $apiPassword, CallRequestRepository $callRequestRepository, PaginatorInterface $paginator)
     {
         $this->_apiUser = $apiUser;
-        $this->_apîPassword = $apiPassword;
-        $this->em = $entityManager;
+        $this->_apiPassword = $apiPassword;
         $this->paginator = $paginator;
+        $this->callRequestRepository = $callRequestRepository;
     }
 
     /**
@@ -66,41 +72,6 @@ class CallRequestService
         } catch (NonLockAPIException $nlapie) {
             throw new CallAPIException($nlapie->getMessage());
         }
-    }
-
-    /**
-     * @param String $country
-     * @param String $phoneNumber
-     * @return array|mixed
-     */
-    private function getPhoneInfoByAPI(string $country, string $phoneNumber)
-    {
-
-        $store = new Store('/cache/PhoneAPI/');
-        $client = HttpClient::createForBaseUri('http://163.172.67.144:8042/', [
-            'auth_basic' => $this->_apiUser . ":" . $this->_apîPassword
-        ]);
-        $client = new CachingHttpClient($client, $store);
-
-        try {
-            $response = $client->request('POST', 'http://163.172.67.144:8042/api/v1/validate', [
-                'json' => [array('phoneNumber' => $phoneNumber, "countryCode" => $country)]
-            ]);
-
-            if ($response->getStatusCode() === 200 && $response->toArray()[0][self::OUTPUT][self::IS_VALID]) {
-                return $response->toArray()[0];
-            }
-            throw new NonLockAPIException("Le numéro de téléphone n'est pas valide !");
-
-        } catch (TransportExceptionInterface |
-        ClientExceptionInterface |
-        DecodingExceptionInterface |
-        RedirectionExceptionInterface |
-        ServerExceptionInterface $e) {
-
-            throw new NonLockAPIException("il y a eu un soucis avec la validation, veuillez re essayer dans un instant");
-        }
-
     }
 
     /**
@@ -127,14 +98,50 @@ class CallRequestService
     }
 
     /**
-     * Persist entity CallRequest
-     *
+     * @param String $country
+     * @param String $phoneNumber
+     * @return array|mixed
+     */
+    private function getPhoneInfoByAPI(string $country, string $phoneNumber)
+    {
+
+        $store = new Store('/cache/PhoneAPI/');
+        $client = HttpClient::createForBaseUri(self::URL_API_PHONE_BASE, [
+            'auth_basic' => $this->_apiUser . ":" . $this->_apiPassword
+        ]);
+        $client = new CachingHttpClient($client, $store);
+
+        try {
+            $response = $client->request('POST', self::URL_API_PHONE_BASE . self::URL_API_PHONE_VALIDATE, [
+                'json' => [array('phoneNumber' => $phoneNumber, "countryCode" => $country)]
+            ]);
+
+            if ($response->getStatusCode() === 200) {
+                $result = $response->toArray();
+
+                if (!empty($result) && $result[0][self::OUTPUT][self::IS_VALID]) {
+                    return $response->toArray()[0];
+                }
+            }
+            throw new NonLockAPIException("Le numéro de téléphone n'est pas valide !");
+
+        } catch (TransportExceptionInterface |
+        ClientExceptionInterface |
+        DecodingExceptionInterface |
+        RedirectionExceptionInterface |
+        ServerExceptionInterface $e) {
+
+            throw new NonLockAPIException("il y a eu un soucis avec la validation, veuillez re essayer dans un instant");
+        }
+
+    }
+
+    /**
      * @param CallRequest $callRequest
      */
     public function save(CallRequest $callRequest)
     {
-        $this->em->persist($callRequest);
-        $this->em->flush();
+        $this->callRequestRepository->saveCallRequest($callRequest);
     }
 
     /**
@@ -146,7 +153,7 @@ class CallRequestService
     {
 
         $pagination = $this->paginator->paginate(
-            $this->em->getRepository(CallRequest::class)->findAll(),
+            $this->callRequestRepository->getAllCallRequest(),
             $page,
             $limit
         );

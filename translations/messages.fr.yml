@@ -1,0 +1,27 @@
+# menu
+menu.logo.alt: logo store discount
+menu.home: Accueil
+menu.list: Listing
+menu.register: Enregistrement
+
+# accueil
+## formulaire de demande de rappel
+form.cbr.fname: Prénom
+form.cbr.name: Nom
+form.cbr.country: Pays
+form.cbr.phone: Numéro de téléphone
+form.cbr.sendbtn: Appellez moi
+
+# listing
+tab.id: id
+tab.fname: prénom
+tab.name: nom
+tab.country: pays
+tab.national: numéro national
+tab.international: numéro international
+
+# messages flash
+msg.success: Votre demande de rappel a bien été enregistré !
+
+# exception
+ex.session.error: Il n'y a pas de demande de rappel en session
