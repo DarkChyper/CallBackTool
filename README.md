@@ -12,6 +12,7 @@ Un exercice avec Symfony et des appels à une API
 ### v0.3.2
   * Amélioration du traitement du tableau reçu par l'API Phone Validate
   * Retrait de l'entity manager de la couche Service
+  * Amélioration de l'UI/UX en mode portables et tablettes
 
 ### v0.3.1
   * Correctif du client HTTP à la réception d'un numéro invalide
