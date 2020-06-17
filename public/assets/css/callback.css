@@ -40,10 +40,6 @@
 }
 
 /* page list */
-.table-striped tbody tr:nth-of-type(2n+1) {
-    background-color: rgba(232,87,17,.15);
-}
-
 .tab-header {
     border-bottom: 2px solid #e85711;
 }
@@ -58,13 +54,8 @@
     text-align: center;
 }
 
-.tab-row-striped:nth-of-type(2n) {
+.tab-row-striped:nth-of-type(2n+1) {
     background-color: rgba(232,87,17,.15);
-}
-
-
-.table thead th{
-    border-bottom: 2px solid #e85711 !important;
 }
 
 /* pagination */
