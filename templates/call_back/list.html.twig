@@ -3,31 +3,24 @@
 {% block title %}Listing | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">PRENOM</th>
-                <th scope="col">NOM</th>
-                <th scope="col">PAYS</th>
-                <th scope="col">NUMERO NATIONAL</th>
-                <th scope="col">NUMERO INTERNATIONAL</th>
-            </tr>
-            </thead>
-            <tbody>
-            {%  for request in callrequests %}
-            <tr>
-                <th scope="row">{{ request.id }}</th>
-                <td>{{ request.fname }}</td>
-                <td>{{ request.name }}</td>
-                <td>{{ request.country }}</td>
-                <td>{{ request.national }}</td>
-                <td>{{ request.international }}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        {{ knp_pagination_render(callrequests) }}
+    <div class="row tab-header">
+        <div class="col-1 tab-role-col">ID</div>
+        <div class="col-5 col-md-2 tab-role-col">PRENOM</div>
+        <div class="col-5 col-md-2 tab-role-col">NOM</div>
+        <div class="col-11 offset-1 col-md-2 offset-md-0 tab-role-col">PAYS</div>
+        <div class="col-11 offset-1 col-md-2 offset-md-0 tab-role-col">NUMERO NATIONAL</div>
+        <div class="col-11 offset-1 col-md-3 offset-md-0 tab-role-col">NUMERO INTERNATIONAL</div>
     </div>
+    {% for request in callrequests %}
+        <div class="row tab-row-striped">
+            <div class="col-1 tab-role-row">{{ request.id }}</div>
+            <div class="col-5 col-md-2">{{ request.fname }}</div>
+            <div class="col-5 col-md-2">{{ request.name }}</div>
+            <div class="col-11 offset-1 col-md-2 offset-md-0">{{ request.country }}</div>
+            <div class="col-11 offset-1 col-md-2 offset-md-0">{{ request.national }}</div>
+            <div class="col-11 offset-1 col-md-3 offset-md-0">{{ request.international }}</div>
+        </div>
+    {% endfor %}
+
+    {{ knp_pagination_render(callrequests) }}
 {% endblock %}
