@@ -1,0 +1,28 @@
+# menu
+menu.logo.alt: Store discount logo
+menu.home: Homepage
+menu.list: List
+menu.register: Register
+
+# accueil
+## formulaire de demande de rappel
+form.cbr.fname: First Name
+form.cbr.name: Name
+form.cbr.country: Country
+form.cbr.phone: Phone Number
+form.cbr.sendbtn: Call Me
+
+# listing
+tab.id: id
+tab.fname: first name
+tab.name: name
+tab.country: country
+tab.national: national phone
+tab.international: international phone
+
+# messages flash
+msg.success: Your call request has been saved !
+
+
+# exception
+ex.session.error: No valid Call Request in session !

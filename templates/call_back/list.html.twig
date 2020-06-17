@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listing | {{ parent() }}{% endblock %}
+{% block title %}{{ 'menu.list' | trans }} | {{ parent() }}{% endblock %}
 
 {% block body %}
     <div class="row tab-header">
-        <div class="col-1 tab-role-col">ID</div>
-        <div class="col-5 col-md-2 tab-role-col">PRENOM</div>
-        <div class="col-5 col-md-2 tab-role-col">NOM</div>
-        <div class="col-11 offset-1 col-md-2 offset-md-0 tab-role-col">PAYS</div>
-        <div class="col-11 offset-1 col-md-2 offset-md-0 tab-role-col">NUMERO NATIONAL</div>
-        <div class="col-11 offset-1 col-md-3 offset-md-0 tab-role-col">NUMERO INTERNATIONAL</div>
+        <div class="col-1 tab-role-col">{{ 'tab.id' | trans | upper }}</div>
+        <div class="col-5 col-md-2 tab-role-col">{{ 'tab.fname' | trans | upper }}</div>
+        <div class="col-5 col-md-2 tab-role-col">{{ 'tab.name' | trans | upper }}</div>
+        <div class="col-11 offset-1 col-md-2 offset-md-0 tab-role-col">{{ 'tab.country' | trans | upper }}</div>
+        <div class="col-11 offset-1 col-md-2 offset-md-0 tab-role-col">{{ 'tab.national' | trans | upper }}</div>
+        <div class="col-11 offset-1 col-md-3 offset-md-0 tab-role-col">{{ 'tab.international' | trans | upper }}</div>
     </div>
     {% for request in callrequests %}
         <div class="row tab-row-striped">

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light nav-pills nav-fill">
     <a class="navbar-brand" href="{{ path("homepage") }}">
-        <img src="{{  asset('assets/img/logo-stores-discount.svg') }}"  height="30" alt="store discount logo" loading="lazy">
+        <img src="{{  asset('assets/img/logo-stores-discount.svg') }}"  height="30" alt="{{ 'menu.logo.alt' | trans }}" loading="lazy">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerMenu" aria-controls="navbarTogglerMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,10 +9,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerMenu">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item {%  if current_page == 'home' %} active {% endif %}">
-                <a class="nav-link" href="{{ path("homepage") }}">Home</a>
+                <a class="nav-link" href="{{ path("homepage") }}">{{ 'menu.home' | trans }}</a>
             </li>
             <li class="nav-item {%  if current_page == 'list' %} active {% endif %}">
-                <a class="nav-link" href="{{ path("list") }}">List</a>
+                <a class="nav-link" href="{{ path("list") }}">{{ 'menu.list' | trans }}</a>
             </li>
         </ul>
     </div>

@@ -54,6 +54,6 @@ class CBRExceptionListener
         if ($message !== null) {
             $this->_mfs->messageError($message);
         }
-        return new RedirectResponse($this->_router->generate($route));
+       return new RedirectResponse($this->_router->generate($route));
     }
 }

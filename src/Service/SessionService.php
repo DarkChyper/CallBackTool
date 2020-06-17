@@ -7,20 +7,24 @@ namespace App\Service;
 use App\Entity\CallRequest;
 use App\Exception\CallRequestSessionException;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SessionService
 {
     protected $session;
+    protected $translator;
 
     const CALL_REQUEST = "callrequest";
 
     /**
      * SessionService constructor.
-     * @param $session
+     * @param SessionInterface $session
+     * @param TranslatorInterface $translator
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, TranslatorInterface $translator)
     {
         $this->session = $session;
+        $this->translator = $translator;
     }
 
     /**
@@ -41,7 +45,7 @@ class SessionService
             $this->session->get(self::CALL_REQUEST) === null ||
             $this->session->get(self::CALL_REQUEST)->getNational() === null){
 
-            throw new CallRequestSessionException("No valid call request in session");
+            throw new CallRequestSessionException($this->translator->trans('ex.session.error'));
         }
         return $this->session->get(self::CALL_REQUEST);
     }
