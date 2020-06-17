@@ -33,7 +33,6 @@ class CallBackController extends AbstractController
             $callRequest = $callRequestService->validateCallRequest($callRequest);
 
             // save in database
-            $this->
             $callRequestService->save($callRequest);
 
             // save in session
