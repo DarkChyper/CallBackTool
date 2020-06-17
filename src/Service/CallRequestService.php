@@ -87,8 +87,12 @@ class CallRequestService
                 'json' => [array('phoneNumber' => $phoneNumber, "countryCode" => $country)]
             ]);
 
-            if ($response->getStatusCode() === 200 && $response->toArray()[0][self::OUTPUT][self::IS_VALID]) {
-                return $response->toArray()[0];
+            if ($response->getStatusCode() === 200) {
+                $result = $response->toArray();
+
+                if (!empty($result) && $result[0][self::OUTPUT][self::IS_VALID]) {
+                    return $response->toArray()[0];
+                }
             }
             throw new NonLockAPIException("Le numéro de téléphone n'est pas valide !");
 
@@ -146,7 +150,7 @@ class CallRequestService
     {
 
         $pagination = $this->paginator->paginate(
-            $this->em->getRepository(CallRequest::class)->findAll(),
+            $this->em->getRepository(CallRequest::class)->getAllCallRequest(),
             $page,
             $limit
         );

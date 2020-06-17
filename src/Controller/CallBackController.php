@@ -33,6 +33,7 @@ class CallBackController extends AbstractController
             $callRequest = $callRequestService->validateCallRequest($callRequest);
 
             // save in database
+            $this->
             $callRequestService->save($callRequest);
 
             // save in session
@@ -77,7 +78,7 @@ class CallBackController extends AbstractController
      */
     public function listing(Request $request, CallRequestService $callRequestService)
     {
-        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page',1), 10);
+        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page',1), 5);
 
 
         return $this->render('call_back/list.html.twig', [
