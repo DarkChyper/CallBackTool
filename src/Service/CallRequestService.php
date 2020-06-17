@@ -32,6 +32,9 @@ class CallRequestService
      */
     protected $paginator;
 
+    /**
+     * @var CallRequestRepository
+     */
     protected $callRequestRepository;
 
     private $_apiUser;
@@ -69,6 +72,29 @@ class CallRequestService
         } catch (NonLockAPIException $nlapie) {
             throw new CallAPIException($nlapie->getMessage());
         }
+    }
+
+    /**
+     * return true if the phone number is valid,
+     * false otherwise
+     *
+     * @param String $country
+     * @param String $phoneNumber
+     * @return bool
+     */
+    public function isPhoneNumberValid(string $country, string $phoneNumber)
+    {
+        $retour = true;
+        try {
+            $response = $this->getPhoneInfoByAPI($country, $phoneNumber);
+            if (empty($response) || !$response[self::OUTPUT][self::IS_VALID]) {
+                $retour = false;
+            }
+        } catch (NonLockAPIException $nlapie) {
+            $retour = false;
+        }
+
+        return $retour;
     }
 
     /**
@@ -111,36 +137,11 @@ class CallRequestService
     }
 
     /**
-     * return true if the phone number is valid,
-     * false otherwise
-     *
-     * @param String $country
-     * @param String $phoneNumber
-     * @return bool
-     */
-    public function isPhoneNumberValid(string $country, string $phoneNumber)
-    {
-        $retour = true;
-        try {
-            $response = $this->getPhoneInfoByAPI($country, $phoneNumber);
-            if (empty($response) || !$response[self::OUTPUT][self::IS_VALID]) {
-                $retour = false;
-            }
-        } catch (NonLockAPIException $nlapie) {
-            $retour = false;
-        }
-
-        return $retour;
-    }
-
-    /**
-     * Persist entity CallRequest
-     *
      * @param CallRequest $callRequest
      */
     public function save(CallRequest $callRequest)
     {
-
+        $this->callRequestRepository->saveCallRequest($callRequest);
     }
 
     /**
