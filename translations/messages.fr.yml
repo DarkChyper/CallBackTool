@@ -11,6 +11,8 @@ form.cbr.name: Nom
 form.cbr.country: Pays
 form.cbr.phone: Numéro de téléphone
 form.cbr.sendbtn: Appellez moi
+form.msg.error: Le numéro de téléphone est invalide !
+form.msg.error.technique: Une erreur technique est survenue, veuillez ré essayer plus tard !
 
 # listing
 tab.id: id

@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Form\Type\CallRequestType;
-use App\Service\SessionService;
 use App\Service\CallRequestService;
+use App\Service\SessionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -27,7 +27,7 @@ class CallBackController extends AbstractController
         $callRequest = $sessionService->getOrCreateCallRequestSession();
         $CallRequestForm = $this->createForm(CallRequestType::class, $callRequest)->handleRequest($request);
 
-        if($CallRequestForm->isSubmitted() && $CallRequestForm->isValid()){
+        if ($CallRequestForm->isSubmitted() && $CallRequestForm->isValid()) {
 
             // validation of the phone number
             $callRequest = $callRequestService->validateCallRequest($callRequest);
@@ -77,7 +77,7 @@ class CallBackController extends AbstractController
      */
     public function listing(Request $request, CallRequestService $callRequestService)
     {
-        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page',1), 5);
+        $requests = $callRequestService->getPaginatedRequests($request->query->getInt('page', 1), 5);
 
 
         return $this->render('call_back/list.html.twig', [
@@ -93,8 +93,15 @@ class CallBackController extends AbstractController
      * @param CallRequestService $callRequestService
      * @return JsonResponse
      */
-    public function verify(Request $request, CallRequestService $callRequestService){
-        $results = Array();
-        return new JsonResponse($results);
+    public function verify(Request $request, CallRequestService $callRequestService)
+    {
+
+        $result = array("result" => false);
+
+        if ($content = $request->getContent()) {
+            $result["result"] = $callRequestService->isPhoneNumberValid(json_decode($content, true));
+        }
+
+        return new JsonResponse($result);
     }
 }

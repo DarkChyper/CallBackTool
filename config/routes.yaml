@@ -17,7 +17,8 @@ fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing-sf4.xml"
 
 verif:
-  path: /verif
+  path: /{_locale}/verif
   controller: App\Controller\CallBackController::verify
+  locale: fr
 
 

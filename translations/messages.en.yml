@@ -7,15 +7,17 @@ menu.register: Register
 # accueil
 ## formulaire de demande de rappel
 form.cbr.fname: First Name
-form.cbr.name: Name
+form.cbr.name: Last Name
 form.cbr.country: Country
 form.cbr.phone: Phone Number
 form.cbr.sendbtn: Call Me
+form.msg.error: Invalid phone number !
+form.msg.error.technique: Technical exception occurs, please try again later !
 
 # listing
 tab.id: id
 tab.fname: first name
-tab.name: name
+tab.name: last name
 tab.country: country
 tab.national: national phone
 tab.international: international phone
