@@ -11,6 +11,7 @@ Un exercice avec Symfony et des appels à une API
   * Validation du numéro de téléphone côté front
   * switch manuel pour la locale
   * page 404 personnalisée et localisée
+  * initialisation des tests fonctionnels
     
 ### v0.3.2
   * Amélioration du traitement du tableau reçu par l'API Phone Validate
