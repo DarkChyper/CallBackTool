@@ -1,19 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light nav-pills nav-fill">
     <a class="navbar-brand" href="{{ path("homepage") }}">
-        <img src="{{  asset('assets/img/logo-stores-discount.svg') }}"  height="30" alt="{{ 'menu.logo.alt' | trans }}" loading="lazy">
+        <img src="{{ asset('assets/img/logo-stores-discount.svg') }}" height="30" alt="{{ 'menu.logo.alt' | trans }}"
+             loading="lazy">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerMenu" aria-controls="navbarTogglerMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerMenu"
+            aria-controls="navbarTogglerMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerMenu">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item {%  if current_page == 'home' %} active {% endif %}">
+            <li class="nav-item {% if current_page == 'home' %} active {% endif %}">
                 <a class="nav-link" href="{{ path("homepage") }}">{{ 'menu.home' | trans }}</a>
             </li>
-            <li class="nav-item {%  if current_page == 'list' %} active {% endif %}">
+            <li class="nav-item {% if current_page == 'list' %} active {% endif %}">
                 <a class="nav-link" href="{{ path("list") }}">{{ 'menu.list' | trans }}</a>
             </li>
         </ul>
+        <div>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle no-background" href="#" id="chooseLocale" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <img class="locale-icon" src="{{ asset('assets/img/flags/' ~ app.request.locale ~ '.png') }}" alt="{{
+                        app.request.locale }}">
+                    </a>
+                    <div class="dropdown-menu resized" aria-labelledby="chooseLocale">
+                        <ul class="navbar-nav mr-auto">
+                            {% include '_locale_switcher.html.twig' %}
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
+
 </nav>

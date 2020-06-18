@@ -6,11 +6,11 @@ Un exercice avec Symfony et des appels à une API
 
 ### TODO
   * Pages d'erreur personnalisées (404, 500)
-  * switch manuel pour la locale
   * amélioration des path avec locale
 
 ### v0.4.0
   * Validation du numéro de téléphone côté front
+  * switch manuel pour la locale
     
 ### v0.3.2
   * Amélioration du traitement du tableau reçu par l'API Phone Validate

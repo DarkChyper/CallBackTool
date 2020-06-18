@@ -11,8 +11,21 @@
 }
 
 /* Menu */
+.resized {
+    min-width: auto !important;
+}
+
 .nav-fill .nav-item {
     text-align: justify;
+}
+
+.no-background {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+img.locale-icon {
+    max-height: 20px;
+    max-width: 20px;
 }
 
 /* card contenant le formulaire de demande de rappel */
