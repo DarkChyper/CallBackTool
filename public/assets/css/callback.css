@@ -95,6 +95,47 @@ img.locale-icon {
     border-color: rgba(232,87,17,1);
 }
 
+/* 404 */
+
+.errorSection {
+    position: relative;
+    height: 300px;
+    text-align: center;
+}
+.errorContent {
+    position: absolute;
+    width: 70%;
+    margin: 0 15%;
+    top: 18%;
+    text-align: center;
+}
+
+.bgText {
+    position: absolute;
+    left: 0;
+    top: -10%;
+    font-size: 250px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.errorContent .btn-back {
+    padding: 13px 0;
+    color: #fff;
+    background: #ed7941;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    width: 183px;
+    margin: 30px auto 0;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
 @media (max-width: 768px) {
     .tab-header, .tab-row-striped {
         margin: auto;

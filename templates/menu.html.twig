@@ -10,13 +10,14 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerMenu">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item {% if current_page == 'home' %} active {% endif %}">
+            <li class="nav-item {% if current_page is defined and current_page == 'home' %} active {% endif %}">
                 <a class="nav-link" href="{{ path("homepage") }}">{{ 'menu.home' | trans }}</a>
             </li>
-            <li class="nav-item {% if current_page == 'list' %} active {% endif %}">
+            <li class="nav-item {% if current_page is defined and current_page == 'list' %} active {% endif %}">
                 <a class="nav-link" href="{{ path("list") }}">{{ 'menu.list' | trans }}</a>
             </li>
         </ul>
+        {% if current_page is defined %}
         <div>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
@@ -33,6 +34,7 @@
                 </li>
             </ul>
         </div>
+        {% endif %}
     </div>
 
 </nav>

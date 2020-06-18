@@ -28,3 +28,9 @@ msg.success: Your call request has been saved !
 
 # exception
 ex.session.error: No valid Call Request in session !
+
+#404
+404.title: 404 Page Not Found
+404.h1: Sorry, the page you are looking for cannot be found.
+404.txt: This page does not exist or no longer exists. We apologize for the inconvenience.
+404.btn: Back to Home
