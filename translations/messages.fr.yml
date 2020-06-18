@@ -11,6 +11,8 @@ form.cbr.name: Nom
 form.cbr.country: Pays
 form.cbr.phone: Numéro de téléphone
 form.cbr.sendbtn: Appellez moi
+form.msg.error: Le numéro de téléphone est invalide !
+form.msg.error.technique: Une erreur technique est survenue, veuillez ré essayer plus tard !
 
 # listing
 tab.id: id
@@ -25,3 +27,10 @@ msg.success: Votre demande de rappel a bien été enregistré !
 
 # exception
 ex.session.error: Il n'y a pas de demande de rappel en session
+
+#404
+404.title: 404 Page introuvable
+404.h1: Désolé, la page que vous cherchez est introuvable.
+404.txt: Cette page n'existe pas ou n'existe plus. Nous vous prions de nous excuser pour la gêne occasionnée.
+404.btn: Retour à l'accueil
+

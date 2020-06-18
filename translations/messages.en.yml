@@ -7,15 +7,17 @@ menu.register: Register
 # accueil
 ## formulaire de demande de rappel
 form.cbr.fname: First Name
-form.cbr.name: Name
+form.cbr.name: Last Name
 form.cbr.country: Country
 form.cbr.phone: Phone Number
 form.cbr.sendbtn: Call Me
+form.msg.error: Invalid phone number !
+form.msg.error.technique: Technical exception occurs, please try again later !
 
 # listing
 tab.id: id
 tab.fname: first name
-tab.name: name
+tab.name: last name
 tab.country: country
 tab.national: national phone
 tab.international: international phone
@@ -26,3 +28,9 @@ msg.success: Your call request has been saved !
 
 # exception
 ex.session.error: No valid Call Request in session !
+
+#404
+404.title: 404 Page Not Found
+404.h1: Sorry, the page you are looking for cannot be found.
+404.txt: This page does not exist or no longer exists. We apologize for the inconvenience.
+404.btn: Back to Home

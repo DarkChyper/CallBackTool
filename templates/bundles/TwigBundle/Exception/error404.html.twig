@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ '404.title' | trans }} | {{ parent() }} {% endblock %}
+
+{% block body %}
+    <section class="errorSection">
+        <div class="errorHolder">
+            <div class="bgText">404</div>
+            <div class="errorContent">
+                <h1>{{ '404.h1' | trans }}</h1>
+                <p>{{ '404.txt' | trans }}</p>
+                <a href="{{ path("homepage") }}" class="btn btn-back">{{ '404.btn' | trans }}</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

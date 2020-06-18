@@ -11,8 +11,21 @@
 }
 
 /* Menu */
+.resized {
+    min-width: auto !important;
+}
+
 .nav-fill .nav-item {
     text-align: justify;
+}
+
+.no-background {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+img.locale-icon {
+    max-height: 20px;
+    max-width: 20px;
 }
 
 /* card contenant le formulaire de demande de rappel */
@@ -82,10 +95,75 @@
     border-color: rgba(232,87,17,1);
 }
 
+/* 404 */
+
+.errorSection {
+    position: relative;
+    height: 300px;
+    text-align: center;
+}
+.errorContent {
+    position: absolute;
+    width: 70%;
+    margin: 0 15%;
+    top: 18%;
+    text-align: center;
+}
+
+.bgText {
+    position: absolute;
+    left: 0;
+    top: -10%;
+    font-size: 250px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.errorContent .btn-back {
+    padding: 13px 0;
+    color: #fff;
+    background: #ed7941;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    width: 183px;
+    margin: 30px auto 0;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
 @media (max-width: 768px) {
     .tab-header, .tab-row-striped {
         margin: auto;
         padding: 0.5rem 0;
         text-align: left;
+    }
+}
+
+@media (max-width: 567px){
+    .errorContent {
+        top: 15%;
+    }
+}
+
+@media (max-width: 767px) {
+    .errorSection {
+        height: 300px;
+    }
+
+    .bgText {
+        top: 0;
+        font-size: 187px;
+        width: 100%;
+        height: 100%;
+    }
+    .errorContent {
+        top: 10%;
+        width: 100%;
+        margin: 0;
     }
 }

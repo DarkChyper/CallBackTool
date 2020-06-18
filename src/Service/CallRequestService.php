@@ -26,6 +26,8 @@ class CallRequestService
     const INTERNATIONAL = "international";
     const URL_API_PHONE_BASE = 'http://163.172.67.144:8042/';
     const URL_API_PHONE_VALIDATE = 'api/v1/validate';
+    const PHONE_NUMBER = "phoneNumber";
+    const COUNTRY = 'country';
 
     /**
      * @var PaginatorInterface
@@ -75,29 +77,6 @@ class CallRequestService
     }
 
     /**
-     * return true if the phone number is valid,
-     * false otherwise
-     *
-     * @param String $country
-     * @param String $phoneNumber
-     * @return bool
-     */
-    public function isPhoneNumberValid(string $country, string $phoneNumber)
-    {
-        $retour = true;
-        try {
-            $response = $this->getPhoneInfoByAPI($country, $phoneNumber);
-            if (empty($response) || !$response[self::OUTPUT][self::IS_VALID]) {
-                $retour = false;
-            }
-        } catch (NonLockAPIException $nlapie) {
-            $retour = false;
-        }
-
-        return $retour;
-    }
-
-    /**
      * @param String $country
      * @param String $phoneNumber
      * @return array|mixed
@@ -113,7 +92,7 @@ class CallRequestService
 
         try {
             $response = $client->request('POST', self::URL_API_PHONE_BASE . self::URL_API_PHONE_VALIDATE, [
-                'json' => [array('phoneNumber' => $phoneNumber, "countryCode" => $country)]
+                'json' => [array(self::PHONE_NUMBER => $phoneNumber, "countryCode" => $country)]
             ]);
 
             if ($response->getStatusCode() === 200) {
@@ -134,6 +113,52 @@ class CallRequestService
             throw new NonLockAPIException("il y a eu un soucis avec la validation, veuillez re essayer dans un instant");
         }
 
+    }
+
+    /**
+     * return true if the phone number is valid,
+     * false otherwise
+     *
+     * @param array $callRequestArray
+     * @return bool
+     */
+    public function isPhoneNumberValid(array $callRequestArray)
+    {
+        $retour = $this->checkCallRequestArray($callRequestArray);
+
+        if ($retour) {
+            try {
+                $response = $this->getPhoneInfoByAPI($callRequestArray[self::COUNTRY], $callRequestArray[self::PHONE_NUMBER]);
+                if (empty($response) || !$response[self::OUTPUT][self::IS_VALID]) {
+                    $retour = false;
+                }
+            } catch (NonLockAPIException $nlapie) {
+                $retour = false;
+            }
+        }
+
+        return $retour;
+    }
+
+    /**
+     * Check the content of the array Call Request
+     *
+     * @param array $callRequestArray
+     * @return bool
+     */
+    private function checkCallRequestArray(array $callRequestArray)
+    {
+        $retour = false;
+
+        if (!empty($callRequestArray) &&
+            array_key_exists(self::COUNTRY, $callRequestArray) &&
+            array_key_exists(self::PHONE_NUMBER, $callRequestArray) &&
+            '' !== trim($callRequestArray[self::COUNTRY]) &&
+            '' !== trim($callRequestArray[self::PHONE_NUMBER])) {
+            $retour = true;
+        }
+
+        return $retour;
     }
 
     /**

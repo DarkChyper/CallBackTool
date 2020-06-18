@@ -48,7 +48,8 @@
             <label for="call_request_country">{{ 'form.cbr.country' | trans }}</label>
             {{ form_widget(callRequestForm.country, {
                 'attr': {
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'onchange': 'checkFieldPhoneNumber("'~ path("verif") ~'");'
                 }
             })
             }}
@@ -58,17 +59,18 @@
             {{ form_widget(callRequestForm.phoneNumber, {
                 'attr': {
                     'class': 'form-control',
-
+                    'onchange': 'checkPhoneNumberWithAPI("'~ path("verif") ~'");'
                 }
             })
             }}
         </div>
         <div class="form-group col-md-12">
-        <button type="submit" class="btn btn-primary" id="submit">
+        <button type="submit" class="btn btn-primary" id="submit" disabled>
             <span class="spinner-border spinner-border-sm hidden" role="status" aria-hidden="true" id="spinner"></span>
             <span>{{ 'form.cbr.sendbtn' | trans }}</span>
         </button>
-            <span id="msg-error" class="msg-error hidden">Le num&eacute;ro de t&eacute;l&eacute;phone est invalide !</span>
+            <span id="msg-error" class="msg-error hidden">{{ 'form.msg.error' | trans }}</span>
+            <span id="msg-error-technique" class="msg-error hidden">{{ 'form.msg.error.technique' | trans }}</span>
         </div>
     </div>
     <div id="cache" class="hidden"></div>
