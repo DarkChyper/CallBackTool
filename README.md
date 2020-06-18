@@ -5,9 +5,12 @@ Un exercice avec Symfony et des appels à une API
 ## Versions
 
 ### TODO
-  * Mettre en place la vérification du numéro depuis la vue
-    * Configurer le bundle FOSJsRoutingBundle
-    * Appel à une route symfony via JS => terminer le script
+  * Pages d'erreur personnalisées (404, 500)
+  * switch manuel pour la locale
+  * amélioration des path avec locale
+
+### v0.4.0
+  * Validation du numéro de téléphone côté front
     
 ### v0.3.2
   * Amélioration du traitement du tableau reçu par l'API Phone Validate
