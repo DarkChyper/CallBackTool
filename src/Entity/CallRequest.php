@@ -32,11 +32,11 @@ class CallRequest
      * @Assert\Length(
      *     min        = 2,
      *     max        = 255,
-     *     minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
-     *     maxMessage = "Votre nom ne peut exéder {{ limit }} caractères.")
+     *     minMessage = "callrequest.name.length.min",
+     *     maxMessage = "assert.name.max")
      * @Assert\Regex(
-     *     pattern    = "/^[a-zA-Z ]{2,255}$/",
-     *     message    = "Votre nom ne peut contenir que des lettres et des espaces."
+     *     pattern    = "/^[a-zA-Z ]{1,255}$/",
+     *     message    = "callrequest.name.regex"
      * )
      */
     protected $name;
@@ -49,11 +49,11 @@ class CallRequest
      * @Assert\Length(
      *     min        = 2,
      *     max        = 255,
-     *     minMessage = "Votre prénom doit faire au moins {{ limit }} caractères",
-     *     maxMessage = "Votre prénom ne peut exéder {{ limit }} caractères.")
+     *     minMessage = "callrequest.fname.length.min",
+     *     maxMessage = "callrequest.fname.length.max")
      * @Assert\Regex(
-     *     pattern    = "/^[a-zA-Z \-]{2,255}$/",
-     *     message    = "Votre prenom ne peut contenir que des lettres, des '-' et des espaces."
+     *     pattern    = "/^[a-zA-Z \-]{1,255}$/",
+     *     message    = "callrequest.fname.regex"
      * )
      */
     protected $fname;
@@ -61,7 +61,7 @@ class CallRequest
     /**
      * @var string country
      * @ORM\Column(name="country", type="string", length=2)
-     * @Assert\Country()
+     * @Assert\Country(message="callrequest.country.country",)
      */
     protected $country;
 
@@ -81,10 +81,10 @@ class CallRequest
      * @var string phone number given by user
      * not stored like this on database
      *
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="callrequest.phonenumber.not_blank")
      * @Assert\Regex(
      *     pattern    = "/^\+{0,1}[0-9 ]{2,35}$/",
-     *     message    = "Le numéro ne peut contenir que des chiffres, des espaces et un '+'"
+     *     message    = "callrequest.phonenumber.regex"
      * )
      */
     protected $phoneNumber;
