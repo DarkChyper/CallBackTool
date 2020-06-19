@@ -1,22 +1,25 @@
 homepage:
-  path: /{_locale}
+  path:
+    fr: /
+    en: /{_locale}
   controller: App\Controller\CallBackController::index
-  locale: "%locale%"
   requirements:
     _locale: fr_FR|en_EN
 
 
 register:
-  path: /{_locale}/register
+  path:
+    fr: /register
+    en: /{_locale}/register
   controller: App\Controller\CallBackController::register
-  locale: "%locale%"
   requirements:
     _locale: fr_FR|en_EN
 
 list:
-  path: /{_locale}/list
+  path:
+    fr: /list
+    en: /{_locale}/list
   controller: App\Controller\CallBackController::listing
-  locale: "%locale%"
   requirements:
     _locale: fr_FR|en_EN
 
@@ -24,9 +27,10 @@ fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing-sf4.xml"
 
 verif:
-  path: /{_locale}/verif
+  path:
+    fr: /verif
+    en: /{_locale}/verif
   controller: App\Controller\CallBackController::verify
-  locale: "%locale%"
   requirements:
     _locale: fr_FR|en_EN
 
