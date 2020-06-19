@@ -6,6 +6,9 @@ Un exercice avec Symfony et des appels à une API
 
 ### TODO
   * amélioration des path avec locale
+  
+### v0.4.1
+  * internationalisation des message de contraintes dans les entités
 
 ### v0.4.0
   * Validation du numéro de téléphone côté front

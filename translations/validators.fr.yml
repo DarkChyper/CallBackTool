@@ -1,0 +1,14 @@
+# entitées
+# CallRequest
+callrequest.name.length.min: Votre nom doit faire au moins {{ limit }} caractères
+callrequest.name.length.max: Votre nom ne peut exéder {{ limit }} caractères.
+callrequest.name.regex: Votre nom ne peut contenir que des lettres et des espaces.
+
+callrequest.fname.length.min: Votre prénom doit faire au moins {{ limit }} caractères
+callrequest.fname.length.max: Votre prénom ne peut exéder {{ limit }} caractères.
+callrequest.fname.regex: Votre prenom ne peut contenir que des lettres, des '-' et des espaces.
+
+callrequest.country.country: Vous devez choisir un pays dans la liste ci dessous.
+
+callrequest.phonenumber.not_blank: Le numéro de téléphone ne peut être vide.
+callrequest.phonenumber.regex: Le numéro ne peut contenir que des chiffres, des espaces et un '+'
