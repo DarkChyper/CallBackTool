@@ -27,7 +27,7 @@ class CallBackControllerTest extends WebTestCase
     public function listIsUp()
     {
         $client = static::createClient();
-        $client->request('GET', '/fr_FR/list');
+        $client->request('GET', '/list');
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
     }
@@ -41,7 +41,7 @@ class CallBackControllerTest extends WebTestCase
     public function registerRedirectToHomeWithoutValidateCR()
     {
         $client = static::createClient();
-        $client->request('GET', '/fr_FR/register');
+        $client->request('GET', '/register');
 
         $this->assertSame(302, $client->getResponse()->getStatusCode());
     }

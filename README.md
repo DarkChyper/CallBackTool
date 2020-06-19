@@ -4,7 +4,7 @@ Un exercice avec Symfony et des appels à une API
 
 ## Versions
 
-### TODO
+### v0.4.2
   * amélioration des path avec locale
   
 ### v0.4.1
